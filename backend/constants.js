@@ -1,1 +1,1 @@
-export const DB_NAME = 'googoo'
+export const DB_NAME = 'rbac'
