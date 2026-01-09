@@ -13,4 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cookieParser());
 
+import assetRouter from './routes/asset.routes.js'
+import userRouter from './routes/user.routes.js'
+
+app.use('/api/v1/users',userRouter);
+app.use('/api/v1/assets',assetRouter);
 export {app};
