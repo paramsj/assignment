@@ -40,8 +40,13 @@ const updateAsset = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { name, content, status } = req.body;
 
-    const asset = await Asset.findById(id);
+    
+    if (!name && !content && status === undefined) {
+        throw new ApiError(400, "At least one field (name, content, or status) is required");
+    }
 
+
+    const asset = await Asset.findById(id);
     if (!asset) {
         throw new ApiError(404, "Asset not found");
     }

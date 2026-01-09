@@ -34,6 +34,10 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body;
 
+    if (!password || (!email && !username)) {
+        throw new ApiError(400, "Password and either email or username are required");
+    }
+    
     const user = await User.findOne({ $or: [{ username }, { email }] });
     if (!user) {
         throw new ApiError(404, "User does not exist");

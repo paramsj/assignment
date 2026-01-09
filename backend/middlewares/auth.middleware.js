@@ -6,7 +6,7 @@ import {User} from "../models/user.model.js";
 export const verifyJWT = asyncHandler(async(req,res,next)=>{
 
     try {
-        const token = req.cookies?.accessToken || req.headers("Authorization")?.replace("Bearer ","");
+        const token = req.cookies?.accessToken || req.headers.Authorization?.replace("Bearer ","");
         if(!token) {
             throw new ApiError(401,"Access token is required");
         }
@@ -18,12 +18,6 @@ export const verifyJWT = asyncHandler(async(req,res,next)=>{
         req.user = user;
         next();
     } catch (error) {
-        if(error.name === "TokenExpiredError") {
-            return res.status(401).json(new ApiError(401,"Access token expired"));
-        }
-        if(error.name === "JsonWebTokenError") {
-            return res.status(401).json(new ApiError(401,"Invalid access token"));
-        }
-        return res.status(500).json(new ApiError(500,"Internal server error"));
+        throw new ApiError(401, error?.message || "Invalid access token");
     }
 });
