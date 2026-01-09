@@ -37,7 +37,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (!password || (!email && !username)) {
         throw new ApiError(400, "Password and either email or username are required");
     }
-    
+
     const user = await User.findOne({ $or: [{ username }, { email }] });
     if (!user) {
         throw new ApiError(404, "User does not exist");
@@ -81,7 +81,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 const updateAccountDetails = asyncHandler(async (req, res) => {
     const { fullname, email } = req.body;
 
-    if (!fullname || !email) {
+    if ([fullname, email].some((field) => !field || field?.trim() === "")) {
         throw new ApiError(400, "All fields are required");
     }
 
