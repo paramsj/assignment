@@ -23,61 +23,55 @@ export default function Login() {
   }
 
   return (
-
-    
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-black mb-2">AssetManager</h1>
-          <p className="text-gray-600 text-sm font-medium">Sign in to your account</p>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-black dark:text-white mb-1">AssetManager</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Sign in to your account</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Username</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Username</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
-              placeholder="Enter your username"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
+              placeholder="Enter username"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-              required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Password</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Password</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              required
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm font-medium">
+            <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-700 dark:text-red-400">
               {error}
             </div>
           )}
 
           <button
-            type="submit"
-            className="w-full bg-black text-white py-3 rounded-lg font-bold text-sm hover:bg-gray-900 transition"
+            onClick={handleSubmit}
+            className="w-full bg-black dark:bg-white text-white dark:text-black py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
           >
             Sign In
           </button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-black font-semibold hover:underline">
-              Register
-            </Link>
-          </p>
         </div>
+
+        <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-black dark:text-white font-medium hover:underline">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   )

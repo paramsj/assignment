@@ -31,64 +31,60 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-black mb-2">Create Account</h1>
-          <p className="text-gray-600 text-sm font-medium">Join AssetManager</p>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-black dark:text-white mb-1">Create Account</h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Join AssetManager</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Full Name</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Full Name</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               placeholder="Enter your full name"
               value={formData.fullname}
               onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
-              required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Username</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Username</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               placeholder="Choose a username"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-              required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Email</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Email</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               type="email"
               placeholder="Enter your email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Password</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Password</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               type="password"
               placeholder="Create a password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-2">Role</label>
+            <label className="block text-sm font-medium text-black dark:text-white mb-1.5">Role</label>
             <select
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:border-black focus:ring-1 focus:ring-black"
+              className="w-full px-3 py-2.5 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
               value={formData.role}
               onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             >
@@ -98,28 +94,26 @@ export default function Register() {
           </div>
 
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm font-medium">
+            <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-700 dark:text-red-400">
               {error}
             </div>
           )}
 
           <button
-            type="submit"
+            onClick={handleSubmit}
             disabled={loading}
-            className="w-full bg-black text-white py-3 rounded-lg font-bold text-sm hover:bg-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-black dark:bg-white text-white dark:text-black py-2.5 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Creating Account..." : "Register"}
           </button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 text-sm">
-            Already have an account?{" "}
-            <Link to="/login" className="text-black font-semibold hover:underline">
-              Sign in
-            </Link>
-          </p>
         </div>
+
+        <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+          Already have an account?{" "}
+          <Link to="/login" className="text-black dark:text-white font-medium hover:underline">
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   )
